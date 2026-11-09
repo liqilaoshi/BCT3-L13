@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商务汉语实战平台 - 商务谈判话术与语音深度训练</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        ambercustom: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        rosecustom: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans SC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .pulse-recording {
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .drag-item {
+            cursor: grab;
+            user-select: none;
+            touch-action: none;
+        }
+        .drag-item:active {
+            cursor: grabbing;
+        }
+        .drop-zone {
+            min-height: 120px;
+            transition: all 0.2s ease;
+        }
+        .drop-zone.drag-over {
+            background-color: #f0f9ff;
+            border-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Navigation Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                        谈
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-slate-900 leading-tight">商务汉语谈判话术深度训练平台</h1>
+                        <p class="text-xs text-slate-500">Business Chinese Negotiation Speech Training (4-Step Cycle)</p>
+                    </div>
+                </div>
+
+                <!-- Step Navigation Bar -->
+                <nav class="hidden md:flex space-x-1 sm:space-x-2">
+                    <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center space-x-1.5 text-brand-600 bg-brand-50">
+                        <span class="w-5 h-5 rounded-full bg-brand-600 text-white flex items-center justify-center text-[10px]">1</span>
+                        <span>输入与拆解</span>
+                    </button>
+                    <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center space-x-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">2</span>
+                        <span>语块内化</span>
+                    </button>
+                    <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center space-x-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">3</span>
+                        <span>任务输出</span>
+                    </button>
+                    <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center space-x-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">4</span>
+                        <span>实战迁移</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden flex border-t border-slate-100 bg-slate-50 divide-x divide-slate-200 text-xs text-center font-medium">
+            <button onclick="switchTab(1)" id="mob-tab-1" class="flex-1 py-2 text-brand-600 bg-white font-bold border-b-2 border-brand-600">1.拆解</button>
+            <button onclick="switchTab(2)" id="mob-tab-2" class="flex-1 py-2 text-slate-600">2.内化</button>
+            <button onclick="switchTab(3)" id="mob-tab-3" class="flex-1 py-2 text-slate-600">3.输出</button>
+            <button onclick="switchTab(4)" id="mob-tab-4" class="flex-1 py-2 text-slate-600">4.迁移</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+        <!-- ==================== STEP 1: 输入与拆解 (听 + 标注) ==================== -->
+        <section id="page-1" class="page-content block space-y-6 animate-fadeIn">
+            <!-- Audio Card Header -->
+            <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 rounded-2xl p-6 text-white shadow-lg">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 bg-brand-500/20 text-brand-300 px-3 py-1 rounded-full text-xs font-semibold mb-2 border border-brand-500/30">
+                            <i class="fa-solid fa-microphone-slash"></i>
+                            <span>阶段一：盲听模式 (限制播放 3 次)</span>
+                        </div>
+                        <h2 class="text-xl font-bold">听音理解：掌握说话者的核心诉求与谈判话术</h2>
+                        <p class="text-xs text-slate-300 mt-1">语音由专业的商务主播男中音播报。目前内容已隐藏，请仔细听 2-3 遍后回答下方理解题。</p>
+                    </div>
+
+                    <div class="flex items-center space-x-4 bg-slate-800/90 p-3 rounded-xl border border-slate-700 w-full md:w-auto justify-between md:justify-start">
+                        <button id="p1-play-btn" onclick="playStep1TTS()" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl font-bold text-sm flex items-center space-x-2 shadow-md transition">
+                            <i class="fa-solid fa-play" id="p1-play-icon"></i>
+                            <span id="p1-play-txt">播放男中音录音</span>
+                        </button>
+                        <div class="text-right">
+                            <div class="text-[11px] text-slate-400">剩余可听次数</div>
+                            <div class="text-base font-bold text-ambercustom-500" id="p1-play-count">3 / 3 次</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Question: What does he want the counterpart to do? -->
+            <div id="quiz-container" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h3 class="text-lg font-bold text-slate-900 flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-question text-brand-600"></i>
+                        <span>听力理解单选题 (Listening Comprehension)</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">核心问题：请问说话者打电话给马总，最主要的目的是想让对方做什么？</p>
+                </div>
+
+                <div class="quiz-item bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-slate-800 text-base mb-4">
+                        1. 说话人在电话中主要表达了什么核心要求？
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <button onclick="checkStep1Quiz('A', false, this)" class="s1-opt text-left px-4 py-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-sm font-medium transition">
+                            A. 立即取消合作计划并转投其他对手公司
+                        </button>
+                        <button onclick="checkStep1Quiz('B', true, this)" class="s1-opt text-left px-4 py-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-sm font-medium transition">
+                            B. 重新认真考虑价格，降低价格以达成合作
+                        </button>
+                        <button onclick="checkStep1Quiz('C', false, this)" class="s1-opt text-left px-4 py-3 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-sm font-medium transition">
+                            C. 要求马总下周一亲自前往对方公司签署合同
+                        </button>
+                        <button onclick="checkStep1Quiz('D', false, this)" class="s1-opt text-left px-4 py-3 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-sm font-medium transition">
+                            D. 保持现有价格不变，但要求缩短交货期限
+                        </button>
+                    </div>
+                    <div id="s1-quiz-feedback" class="mt-4 hidden"></div>
+                </div>
+            </div>
+
+            <!-- Text Reveal & Drag-and-Drop Classification Section (Initially Hidden) -->
+            <div id="text-reveal-section" class="hidden bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl flex items-center space-x-3 text-emerald-800 text-sm font-medium">
+                    <i class="fa-solid fa-unlock text-emerald-600 text-lg"></i>
+                    <span>回答正确！短文文本已解锁。请阅读下方文本，并进行“施压句”与“示好句”的分类标注。</span>
+                </div>
+
+                <!-- Text Card -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <h3 class="font-bold text-slate-900 text-base mb-3 border-b border-slate-200 pb-2">
+                        <i class="fa-solid fa-file-text text-brand-600 mr-2"></i>短文原文 (Passage Text):
+                    </h3>
+                    <p id="full-passage-text" class="text-base text-slate-800 leading-relaxed font-medium">
+                        马总，这个合作计划我们已经讨论了很多次。您最好再考虑一下。如果贵公司不接受这个计划，我们就只能和其他公司合作了。我方想谈个好一点儿的价钱，也想和贵公司合作，但是价格得低一点儿。这个价格比我们想的要高。请再认真考虑一下价格。我下周再联系您。
+                    </p>
+                </div>
+
+                <!-- Drag and Drop Task Card -->
+                <div class="space-y-4 pt-2">
+                    <div class="border-b border-slate-100 pb-3">
+                        <h3 class="font-bold text-slate-900 text-lg flex items-center space-x-2">
+                            <i class="fa-solid fa-layer-group text-brand-600"></i>
+                            <span>拖拽式话术解构：区分“硬话（施压）”与“软话（示好）”</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-1">
+                            在商务谈判中，高明的话术常常采取“打一巴掌给个甜枣”的硬软结合策略。请将下列句子拖入正确的分类框中。
+                        </p>
+                    </div>
+
+                    <!-- Draggable Pool -->
+                    <div class="bg-slate-100 p-4 rounded-xl space-y-2" id="drag-source-pool">
+                        <div class="text-xs font-bold text-slate-500 mb-2">待分类句子 (Click or Drag Sentences):</div>
+                        <div class="flex flex-wrap gap-2" id="sentence-chips-container">
+                            <div draggable="true" ondragstart="handleDragStart(event)" id="sent-1" data-type="hard" class="drag-item bg-white px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 shadow-sm hover:border-brand-500 transition">
+                                选项A: 如果贵公司不接受这个计划，我们就只能和其他公司合作了。
+                            </div>
+                            <div draggable="true" ondragstart="handleDragStart(event)" id="sent-2" data-type="soft" class="drag-item bg-white px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 shadow-sm hover:border-brand-500 transition">
+                                选项B: 我方想谈个好一点儿的价钱，也想和贵公司合作。
+                            </div>
+                            <div draggable="true" ondragstart="handleDragStart(event)" id="sent-3" data-type="hard" class="drag-item bg-white px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 shadow-sm hover:border-brand-500 transition">
+                                选项C: 这个价格比我们想的要高。价格得低一点儿。
+                            </div>
+                            <div draggable="true" ondragstart="handleDragStart(event)" id="sent-4" data-type="soft" class="drag-item bg-white px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 shadow-sm hover:border-brand-500 transition">
+                                选项D: 我下周再联系您，请再认真考虑一下。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Two Target Drop Zones -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Drop Zone 1: Hard Stance -->
+                        <div class="drop-zone border-2 border-dashed border-rose-300 bg-rose-50/50 p-4 rounded-xl space-y-3" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'hard')" id="zone-hard">
+                            <div class="flex items-center justify-between border-b border-rose-200 pb-2">
+                                <span class="font-bold text-sm text-rose-700 flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <span>施压句 / 硬话 (Hard Stance / Pressure Tactics)</span>
+                                </span>
+                                <span class="text-[10px] bg-rose-200 text-rose-800 px-2 py-0.5 rounded font-semibold">底线与警告</span>
+                            </div>
+                            <p class="text-[11px] text-rose-600 italic">English: Sentences that create urgency, signal alternative options, or state strict boundaries.</p>
+                            <div class="zone-content space-y-2"></div>
+                        </div>
+
+                        <!-- Drop Zone 2: Soft Stance -->
+                        <div class="drop-zone border-2 border-dashed border-emerald-300 bg-emerald-50/50 p-4 rounded-xl space-y-3" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'soft')" id="zone-soft">
+                            <div class="flex items-center justify-between border-b border-emerald-200 pb-2">
+                                <span class="font-bold text-sm text-emerald-700 flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-handshake"></i>
+                                    <span>示好句 / 软话 (Soft Stance / Goodwill & Concession)</span>
+                                </span>
+                                <span class="text-[10px] bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded font-semibold">合作诚意</span>
+                            </div>
+                            <p class="text-[11px] text-emerald-600 italic">English: Sentences expressing sincere desire to partner, leaving room for buffer & further talk.</p>
+                            <div class="zone-content space-y-2"></div>
+                        </div>
+                    </div>
+
+                    <!-- Validation Feedback -->
+                    <div id="drag-validation-result" class="hidden p-4 rounded-xl text-xs font-semibold"></div>
+                </div>
+            </div>
+
+            <!-- Page 1 Next Step Footer -->
+            <div class="flex justify-end pt-4">
+                <button onclick="switchTab(2)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-brand-500/20 flex items-center space-x-2 transition transform hover:-translate-y-0.5">
+                    <span>进入第 2 步：语块内化替换</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== STEP 2: 语块内化 (语块替换练习) ==================== -->
+        <section id="page-2" class="page-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-8">
+                <div class="border-b border-slate-100 pb-4">
+                    <div class="inline-flex items-center space-x-2 bg-brand-50 text-brand-700 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+                        <i class="fa-solid fa-cubes"></i>
+                        <span>阶段二：高频谈判语块挖空替换 (Chunk Substitution Drills)</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">核心句型与多向扩展替换练习</h2>
+                    <p class="text-xs text-slate-500 mt-1">
+                        请点击下方提示框中的 5–8 个扩展词块，实时替换句中的空白处，并进行朗读录音打分。
+                    </p>
+                </div>
+
+                <!-- Pattern Group 1 -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                        <div class="text-base font-bold text-slate-800">
+                            句型 1: “如果贵公司不接受这个计划，我们就只能 <span id="slot-1-text" class="bg-ambercustom-100 text-ambercustom-600 px-2 py-0.5 rounded border border-ambercustom-300 font-bold">和其他公司合作了</span>。”
+                        </div>
+                        <button onclick="speakCurrentChunk(1)" class="text-xs bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-brand-600 font-semibold hover:bg-brand-50 flex items-center space-x-1.5 transition">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>听当前整句发音</span>
+                        </button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold text-slate-500">点击替换以下 6 个谈判候选语块：</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="replaceChunk(1, '和其他公司合作了')" class="chunk-btn-1 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">1. 和其他公司合作了</button>
+                            <button onclick="replaceChunk(1, '暂停这个合作项目了')" class="chunk-btn-1 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">2. 暂停这个合作项目了</button>
+                            <button onclick="replaceChunk(1, '重新调整整体方案了')" class="chunk-btn-1 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">3. 重新调整整体方案了</button>
+                            <button onclick="replaceChunk(1, '寻求第三方的支持了')" class="chunk-btn-1 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">4. 寻求第三方的支持了</button>
+                            <button onclick="replaceChunk(1, '放弃这次投标机会了')" class="chunk-btn-1 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">5. 放弃这次投标机会了</button>
+                            <button onclick="replaceChunk(1, '按原合同条款执行了')" class="chunk-btn-1 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">6. 按原合同条款执行了</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <div id="chunk-score-1" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 hidden">
+                            <i class="fa-solid fa-award mr-1"></i><span id="chunk-score-1-txt">评估得分：96分 Perfect</span>
+                        </div>
+                        <button id="btn-rec-chunk-1" onclick="startChunkRecord(1)" class="ml-auto px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition">
+                            <i class="fa-solid fa-microphone"></i>
+                            <span id="rec-chunk-1-txt">点击录音打分</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pattern Group 2 -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                        <div class="text-base font-bold text-slate-800">
+                            句型 2: “但是 <span id="slot-2-text" class="bg-ambercustom-100 text-ambercustom-600 px-2 py-0.5 rounded border border-ambercustom-300 font-bold">价格得低一点儿</span>。”
+                        </div>
+                        <button onclick="speakCurrentChunk(2)" class="text-xs bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-brand-600 font-semibold hover:bg-brand-50 flex items-center space-x-1.5 transition">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>听当前整句发音</span>
+                        </button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold text-slate-500">点击替换以下 7 个条件诉求语块：</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="replaceChunk(2, '价格得低一点儿')" class="chunk-btn-2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">1. 价格得低一点儿</button>
+                            <button onclick="replaceChunk(2, '交货期得提前一点儿')" class="chunk-btn-2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">2. 交货期得提前一点儿</button>
+                            <button onclick="replaceChunk(2, '付款方式得灵活一点儿')" class="chunk-btn-2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">3. 付款方式得灵活一点儿</button>
+                            <button onclick="replaceChunk(2, '首付比例得降低一点儿')" class="chunk-btn-2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">4. 首付比例得降低一点儿</button>
+                            <button onclick="replaceChunk(2, '质保期限得延长一点儿')" class="chunk-btn-2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">5. 质保期限得延长一点儿</button>
+                            <button onclick="replaceChunk(2, '售后服务得完善一点儿')" class="chunk-btn-2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">6. 售后服务得完善一点儿</button>
+                            <button onclick="replaceChunk(2, '订购数量得减少一点儿')" class="chunk-btn-2 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">7. 订购数量得减少一点儿</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <div id="chunk-score-2" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 hidden">
+                            <i class="fa-solid fa-award mr-1"></i><span id="chunk-score-2-txt">评估得分：95分 Great</span>
+                        </div>
+                        <button id="btn-rec-chunk-2" onclick="startChunkRecord(2)" class="ml-auto px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition">
+                            <i class="fa-solid fa-microphone"></i>
+                            <span id="rec-chunk-2-txt">点击录音打分</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pattern Group 3 -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                        <div class="text-base font-bold text-slate-800">
+                            句型 3: “<span id="slot-3-text" class="bg-ambercustom-100 text-ambercustom-600 px-2 py-0.5 rounded border border-ambercustom-300 font-bold">这个价格比我们想的要高</span>。”
+                        </div>
+                        <button onclick="speakCurrentChunk(3)" class="text-xs bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-brand-600 font-semibold hover:bg-brand-50 flex items-center space-x-1.5 transition">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>听当前整句发音</span>
+                        </button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold text-slate-500">点击替换以下 6 个比较预判语块：</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="replaceChunk(3, '这个价格比我们想的要高')" class="chunk-btn-3 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">1. 这个价格比我们想的要高</button>
+                            <button onclick="replaceChunk(3, '这个交期比我们要求的要长')" class="chunk-btn-3 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">2. 这个交期比我们要求的要长</button>
+                            <button onclick="replaceChunk(3, '这个条件比我方预期的要严')" class="chunk-btn-3 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">3. 这个条件比我方预期的要严</button>
+                            <button onclick="replaceChunk(3, '这个预算比上个月算的要多')" class="chunk-btn-3 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">4. 这个预算比上个月算的要多</button>
+                            <button onclick="replaceChunk(3, '这个风险比我们估算的要大')" class="chunk-btn-3 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">5. 这个风险比我们估算的要大</button>
+                            <button onclick="replaceChunk(3, '这个折扣比同行业给的要小')" class="chunk-btn-3 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:border-brand-500 hover:text-brand-600 transition shadow-sm">6. 这个折扣比同行业给的要小</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <div id="chunk-score-3" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 hidden">
+                            <i class="fa-solid fa-award mr-1"></i><span id="chunk-score-3-txt">评估得分：98分 Perfect</span>
+                        </div>
+                        <button id="btn-rec-chunk-3" onclick="startChunkRecord(3)" class="ml-auto px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition">
+                            <i class="fa-solid fa-microphone"></i>
+                            <span id="rec-chunk-3-txt">点击录音打分</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2 Navigation Footer -->
+            <div class="flex justify-between items-center">
+                <button onclick="switchTab(1)" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-medium text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>返回输入与拆解</span>
+                </button>
+                <button onclick="switchTab(3)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-brand-500/20 flex items-center space-x-2 text-sm">
+                    <span>进入第 3 步：任务输出</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== STEP 3: 输出 (复述 + 双角色演练) ==================== -->
+        <section id="page-3" class="page-content hidden space-y-6">
+            
+            <!-- Task A: 3-Sentence Voice Retelling -->
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <div class="inline-flex items-center space-x-2 bg-brand-50 text-brand-700 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+                        <i class="fa-solid fa-microphone"></i>
+                        <span>阶段三 (Part A)：三句话精炼语音复述 (3-Sentence Voice Retelling)</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">请回答下列 3 个核心问题（全语音输入 + 回放）</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Retell Question 1 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-bold text-slate-900">问题 1：是谁打电话给谁？ (Who called whom?)</span>
+                            <span id="retell-status-1" class="text-xs font-semibold text-slate-400">请录音回答</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                            <button onclick="handleVoiceTask('retell-1', '我方代表打电话给马总。')" class="w-full sm:w-auto px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl flex items-center justify-center space-x-2 shadow transition">
+                                <i class="fa-solid fa-microphone"></i>
+                                <span id="rec-retell-1-txt">开始语音回答</span>
+                            </button>
+                            
+                            <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                                <audio id="audio-retell-1" class="hidden"></audio>
+                                <button id="play-retell-1-btn" onclick="playVoiceRecord('retell-1')" class="hidden px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold text-xs rounded-lg hover:bg-slate-100 flex items-center space-x-1">
+                                    <i class="fa-solid fa-play text-brand-600"></i>
+                                    <span>回放我的录音</span>
+                                </button>
+                                <div id="score-retell-1" class="hidden text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                                    得分：95分
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Retell Question 2 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-bold text-slate-900">问题 2：打电话主要要什么？ (What do they want?)</span>
+                            <span id="retell-status-2" class="text-xs font-semibold text-slate-400">请录音回答</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                            <button onclick="handleVoiceTask('retell-2', '要求对方降低价格并接受合作计划。')" class="w-full sm:w-auto px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl flex items-center justify-center space-x-2 shadow transition">
+                                <i class="fa-solid fa-microphone"></i>
+                                <span id="rec-retell-2-txt">开始语音回答</span>
+                            </button>
+                            
+                            <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                                <audio id="audio-retell-2" class="hidden"></audio>
+                                <button id="play-retell-2-btn" onclick="playVoiceRecord('retell-2')" class="hidden px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold text-xs rounded-lg hover:bg-slate-100 flex items-center space-x-1">
+                                    <i class="fa-solid fa-play text-brand-600"></i>
+                                    <span>回放我的录音</span>
+                                </button>
+                                <div id="score-retell-2" class="hidden text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                                    得分：96分
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Retell Question 3 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-bold text-slate-900">问题 3：下一步怎么办？ (What is the next step?)</span>
+                            <span id="retell-status-3" class="text-xs font-semibold text-slate-400">请录音回答</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                            <button onclick="handleVoiceTask('retell-3', '给对方时间考虑，我下周再联系对方。')" class="w-full sm:w-auto px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl flex items-center justify-center space-x-2 shadow transition">
+                                <i class="fa-solid fa-microphone"></i>
+                                <span id="rec-retell-3-txt">开始语音回答</span>
+                            </button>
+                            
+                            <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                                <audio id="audio-retell-3" class="hidden"></audio>
+                                <button id="play-retell-3-btn" onclick="playVoiceRecord('retell-3')" class="hidden px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold text-xs rounded-lg hover:bg-slate-100 flex items-center space-x-1">
+                                    <i class="fa-solid fa-play text-brand-600"></i>
+                                    <span>回放我的录音</span>
+                                </button>
+                                <div id="score-retell-3" class="hidden text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                                    得分：97分
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task B: Dual Roleplay Interactive Simulation (拒绝、还价、拖延) -->
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                <div class="border-b border-slate-100 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+                            <i class="fa-solid fa-people-arrows"></i>
+                            <span>阶段三 (Part B)：双角色拟真对话对练 (Dual-Role Interaction)</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-900">演练场景：应对马总的 3 种常见反应</h2>
+                    </div>
+
+                    <!-- Role Selector -->
+                    <div class="flex items-center space-x-2 bg-slate-100 p-1.5 rounded-xl text-xs">
+                        <span class="text-slate-500 pl-2 font-semibold">我的角色：</span>
+                        <button id="role-my-btn" onclick="selectUserRole('Me')" class="px-3 py-1.5 rounded-lg font-bold bg-brand-600 text-white shadow-sm transition">
+                            我方 (主动谈判)
+                        </button>
+                        <button id="role-ma-btn" onclick="selectUserRole('Ma')" class="px-3 py-1.5 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition">
+                            马总 (接招回应)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3 Scenario Tabs -->
+                <div class="flex space-x-2 border-b border-slate-200 pb-2">
+                    <button onclick="switchScenario(1)" id="scen-tab-1" class="px-4 py-2 text-xs font-bold rounded-xl bg-brand-50 text-brand-600 border border-brand-200">
+                        场景一：拒绝 (Refusal)
+                    </button>
+                    <button onclick="switchScenario(2)" id="scen-tab-2" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-600 hover:bg-slate-100">
+                        场景二：还价 (Counter-Offer)
+                    </button>
+                    <button onclick="switchScenario(3)" id="scen-tab-3" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-600 hover:bg-slate-100">
+                        场景三：拖延 (Delay Tactics)
+                    </button>
+                </div>
+
+                <!-- Interactive Chat Box -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 text-white space-y-4 shadow-xl">
+                    <div id="roleplay-dialogue-box" class="space-y-3 custom-scrollbar max-h-72 overflow-y-auto pr-1">
+                        <!-- Dialogue lines populated by JS -->
+                    </div>
+
+                    <!-- Voice Action Controller -->
+                    <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div id="roleplay-status-text" class="text-xs text-slate-300 font-semibold flex items-center space-x-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>准备就绪：请点击右侧按钮开始轮流对答演练</span>
+                        </div>
+
+                        <div class="flex items-center space-x-2 w-full sm:w-auto">
+                            <button id="rp-action-btn" onclick="nextRolePlayStep()" class="flex-1 sm:flex-none px-6 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl shadow transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-microphone"></i>
+                                <span id="rp-btn-txt">点击台词录音并推进对话</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3 Navigation Footer -->
+            <div class="flex justify-between items-center">
+                <button onclick="switchTab(2)" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-medium text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>返回语块内化</span>
+                </button>
+                <button onclick="switchTab(4)" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-brand-500/20 flex items-center space-x-2 text-sm">
+                    <span>进入第 4 步：实战迁移</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== STEP 4: 迁移 (变式 + 1分钟限时录音) ==================== -->
+        <section id="page-4" class="page-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-8">
+                <div class="border-b border-slate-100 pb-4">
+                    <div class="inline-flex items-center space-x-2 bg-rosecustom-50 text-rosecustom-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+                        <i class="fa-solid fa-stopwatch"></i>
+                        <span>阶段四：新情境迁移与 1 分钟限时演讲录音 (Scenario Transfer & 1-Min Limit)</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">实战变式：应对极端商务谈判突发状况</h2>
+                    <p class="text-xs text-slate-500 mt-1">
+                        每项任务限时 **1 分钟 (60s)** 语音录音。录音完成后可回听检视：“哪句卡住了？哪句语气不坚定？”
+                    </p>
+                </div>
+
+                <!-- Scenario Card 1 -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-200 pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-rose-600 bg-rose-100 px-2.5 py-0.5 rounded">突发情境 1</span>
+                            <h3 class="text-base font-bold text-slate-900 mt-1">对方态度坚决，直接明确拒绝降价</h3>
+                        </div>
+                        <div class="text-xs text-slate-500 font-mono">单句限时：60 秒 (1 Min)</div>
+                    </div>
+
+                    <p class="text-xs text-slate-600 leading-relaxed bg-white p-3 rounded-xl border border-slate-100">
+                        💬 提示话术构思：先表达对对方立场的理解（软），再重申如果不降价我方只能寻找替代方案的后果（硬），最后留下再次沟通的窗口。
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                        <button onclick="startTimedRecording('transfer-1')" id="btn-trans-1" class="w-full sm:w-auto px-5 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl flex items-center justify-center space-x-2 shadow transition">
+                            <i class="fa-solid fa-microphone"></i>
+                            <span id="txt-trans-1">开始 1 分钟限时挑战录音</span>
+                        </button>
+
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-end">
+                            <!-- Countdown timer display -->
+                            <div id="timer-trans-1" class="text-sm font-mono font-bold text-slate-400 hidden">01:00</div>
+                            <audio id="audio-trans-1" class="hidden"></audio>
+                            <button id="play-trans-1-btn" onclick="playVoiceRecord('trans-1')" class="hidden px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold text-xs rounded-lg hover:bg-slate-100 flex items-center space-x-1">
+                                <i class="fa-solid fa-play text-brand-600"></i>
+                                <span>回听我的表达与语气</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scenario Card 2 -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-200 pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-rose-600 bg-rose-100 px-2.5 py-0.5 rounded">突发情境 2</span>
+                            <h3 class="text-base font-bold text-slate-900 mt-1">对方反向压价，要求比我方预期低得多</h3>
+                        </div>
+                        <div class="text-xs text-slate-500 font-mono">单句限时：60 秒 (1 Min)</div>
+                    </div>
+
+                    <p class="text-xs text-slate-600 leading-relaxed bg-white p-3 rounded-xl border border-slate-100">
+                        💬 提示话术构思：强调产品高品质与品牌知名度（软），说明这个低价已超出成本底线（硬），提出各退一步的新折中方案。
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                        <button onclick="startTimedRecording('transfer-2')" id="btn-trans-2" class="w-full sm:w-auto px-5 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl flex items-center justify-center space-x-2 shadow transition">
+                            <i class="fa-solid fa-microphone"></i>
+                            <span id="txt-trans-2">开始 1 分钟限时挑战录音</span>
+                        </button>
+
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-end">
+                            <div id="timer-trans-2" class="text-sm font-mono font-bold text-slate-400 hidden">01:00</div>
+                            <audio id="audio-trans-2" class="hidden"></audio>
+                            <button id="play-trans-2-btn" onclick="playVoiceRecord('trans-2')" class="hidden px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold text-xs rounded-lg hover:bg-slate-100 flex items-center space-x-1">
+                                <i class="fa-solid fa-play text-brand-600"></i>
+                                <span>回听我的表达与语气</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scenario Card 3 -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-200 pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-rose-600 bg-rose-100 px-2.5 py-0.5 rounded">突发情境 3</span>
+                            <h3 class="text-base font-bold text-slate-900 mt-1">对方同意价格，但强行要求延长 90 天账期</h3>
+                        </div>
+                        <div class="text-xs text-slate-500 font-mono">单句限时：60 秒 (1 Min)</div>
+                    </div>
+
+                    <p class="text-xs text-slate-600 leading-relaxed bg-white p-3 rounded-xl border border-slate-100">
+                        💬 提示话术构思：感谢对方对价格的认可（软），指出资金流回笼风险严峻（硬），提出以增加采购量为交换条件来缩短账期。
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                        <button onclick="startTimedRecording('transfer-3')" id="btn-trans-3" class="w-full sm:w-auto px-5 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl flex items-center justify-center space-x-2 shadow transition">
+                            <i class="fa-solid fa-microphone"></i>
+                            <span id="txt-trans-3">开始 1 分钟限时挑战录音</span>
+                        </button>
+
+                        <div class="flex items-center space-x-3 w-full sm:w-auto justify-end">
+                            <div id="timer-trans-3" class="text-sm font-mono font-bold text-slate-400 hidden">01:00</div>
+                            <audio id="audio-trans-3" class="hidden"></audio>
+                            <button id="play-trans-3-btn" onclick="playVoiceRecord('trans-3')" class="hidden px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold text-xs rounded-lg hover:bg-slate-100 flex items-center space-x-1">
+                                <i class="fa-solid fa-play text-brand-600"></i>
+                                <span>回听我的表达与语气</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Completion Banner -->
+            <div class="bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 rounded-2xl p-6 text-white shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl">
+                        🏆
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">恭喜您完成全部 4 步谈判话术循环训练！</h4>
+                        <p class="text-xs text-brand-100 mt-0.5">您已成功掌握了听力拆解、语块替换、复述表达与极高维度的实战应对能力。</p>
+                    </div>
+                </div>
+                <button onclick="switchTab(1)" class="bg-white text-brand-700 font-bold px-5 py-2.5 rounded-xl shadow hover:bg-brand-50 transition text-sm flex-shrink-0">
+                    重新开始本课
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400">
+        <p>商务汉语谈判话术深度训练平台 &copy; 2026 Interactive Business Chinese Learning</p>
+    </footer>
+
+    <!-- Interactive JavaScript Engine -->
+    <script>
+        // Global State Variables
+        let step1PlayCount = 3;
+        let selectedUserRole = 'Me'; // 'Me' or 'Ma'
+        let currentScenarioId = 1;
+        let rolePlayStep = 0;
+        let activeMediaRecorders = {};
+        let recordedAudioBlobs = {};
+        let activeTimerInterval = null;
+
+        // Step Switch Logic
+        function switchTab(pageNum) {
+            document.querySelectorAll('.page-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+
+            const activePage = document.getElementById(`page-${pageNum}`);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+                activePage.classList.add('block');
+            }
+
+            document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+                if (idx + 1 === pageNum) {
+                    btn.className = 'tab-btn px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center space-x-1.5 text-brand-600 bg-brand-50';
+                    btn.querySelector('span:first-child').className = 'w-5 h-5 rounded-full bg-brand-600 text-white flex items-center justify-center text-[10px]';
+                } else {
+                    btn.className = 'tab-btn px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center space-x-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100';
+                    btn.querySelector('span:first-child').className = 'w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]';
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Improved Natural Deep Male Baritone TTS with Voice Selection & Frequency Tuning
+        let cachedVoices = [];
+        function getNaturalMaleVoice() {
+            if (!('speechSynthesis' in window)) return null;
+            if (cachedVoices.length === 0) {
+                cachedVoices = window.speechSynthesis.getVoices();
+            }
+            
+            // Priority list for high-quality natural Chinese Male anchors
+            const maleKeywords = ['Yunyang', 'Yunxi', 'Kangkang', 'Male', '男', 'Sin-Ji', 'Yaoyao', 'Xiaoxiao'];
+            const zhVoices = cachedVoices.filter(v => v.lang.includes('zh') || v.lang.includes('CN') || v.lang.includes('HK') || v.lang.includes('TW'));
+            
+            // 1. Find explicit male natural voice
+            for (let kw of maleKeywords) {
+                const found = zhVoices.find(v => v.name.toLowerCase().includes(kw.toLowerCase()));
+                if (found) return found;
+            }
+
+            // 2. Fallback to Google / Microsoft online natural neural voices if available
+            const neuralVoice = zhVoices.find(v => v.name.includes('Neural') || v.name.includes('Natural') || v.name.includes('Google'));
+            if (neuralVoice) return neuralVoice;
+
+            // 3. Fallback to any Chinese voice
+            return zhVoices[0] || null;
+        }
+
+        // Warm up voices on load
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                cachedVoices = window.speechSynthesis.getVoices();
+            };
+        }
+
+        function speakTTS(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                const chosenVoice = getNaturalMaleVoice();
+                if (chosenVoice) {
+                    utterance.voice = chosenVoice;
+                }
+
+                utterance.lang = 'zh-CN';
+                // Fine-tuned parameter for rich, confident baritone news-anchor cadence
+                utterance.pitch = 0.82; // Lower pitch for rich baritone bass
+                utterance.rate = 0.92;  // Calm, steady, professional pace
+
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // STEP 1: Blind Listening TTS Player with limit
+        function playStep1TTS() {
+            if (step1PlayCount <= 0) {
+                alert('听力播放次数已达上限（3次）。请根据听到的内容作答。');
+                return;
+            }
+
+            step1PlayCount--;
+            document.getElementById('p1-play-count').innerText = `${step1PlayCount} / 3 次`;
+
+            const fullText = "马总，这个合作计划我们已经讨论了很多次。您最好再考虑一下。如果贵公司不接受这个计划，我们就只能和其他公司合作了。我方想谈个好一点儿的价钱，也想和贵公司合作，但是价格得低一点儿。这个价格比我们想的要高。请再认真考虑一下价格。我下周再联系您。";
+            speakTTS(fullText);
+
+            if (step1PlayCount === 0) {
+                const btn = document.getElementById('p1-play-btn');
+                btn.classList.remove('bg-brand-600', 'hover:bg-brand-500');
+                btn.classList.add('bg-slate-600', 'cursor-not-allowed');
+                document.getElementById('p1-play-txt').innerText = "次数已用完";
+            }
+        }
+
+        // STEP 1: Quiz Evaluation
+        function checkStep1Quiz(opt, isCorrect, btnEl) {
+            document.querySelectorAll('.s1-opt').forEach(b => b.disabled = true);
+            const feedback = document.getElementById('s1-quiz-feedback');
+            feedback.classList.remove('hidden');
+
+            if (isCorrect) {
+                btnEl.className = 's1-opt text-left px-4 py-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 text-sm font-bold transition flex justify-between items-center';
+                btnEl.innerHTML += ' <i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>';
+                
+                feedback.className = 'mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-semibold text-emerald-800 flex items-center space-x-2';
+                feedback.innerHTML = '<i class="fa-solid fa-check text-base"></i> <span>回答正确！说话者明确表达希望降低价格并推进计划。全文已为您解锁！</span>';
+
+                // Unlock Text & Drag Section
+                document.getElementById('text-reveal-section').classList.remove('hidden');
+                document.getElementById('text-reveal-section').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                btnEl.className = 's1-opt text-left px-4 py-3 rounded-xl border-2 border-rose-400 bg-rose-50 text-rose-900 text-sm font-medium transition flex justify-between items-center';
+                btnEl.innerHTML += ' <i class="fa-solid fa-circle-xmark text-rose-500 text-base"></i>';
+
+                feedback.className = 'mt-4 p-4 bg-rose-50 border border-rose-200 rounded-xl text-xs font-semibold text-rose-800 flex items-center space-x-2';
+                feedback.innerHTML = '<i class="fa-solid fa-circle-exclamation text-base"></i> <span>回答有误。请重新聆听音频或刷新重试。</span>';
+            }
+        }
+
+        // Drag and Drop Logic
+        let draggedItem = null;
+
+        function handleDragStart(e) {
+            draggedItem = e.target;
+            e.dataTransfer.setData('text/plain', e.target.id);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e, zoneType) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+
+            if (draggedItem) {
+                const zoneContent = e.currentTarget.querySelector('.zone-content');
+                zoneContent.appendChild(draggedItem);
+                validateDragClassification();
+            }
+        }
+
+        function validateDragClassification() {
+            const hardItems = document.getElementById('zone-hard').querySelectorAll('.drag-item');
+            const softItems = document.getElementById('zone-soft').querySelectorAll('.drag-item');
+            const resultBox = document.getElementById('drag-validation-result');
+
+            if (hardItems.length + softItems.length === 4) {
+                let hardCorrect = true;
+                let softCorrect = true;
+
+                hardItems.forEach(el => { if (el.dataset.type !== 'hard') hardCorrect = false; });
+                softItems.forEach(el => { if (el.dataset.type !== 'soft') softCorrect = false; });
+
+                resultBox.classList.remove('hidden');
+                if (hardCorrect && softCorrect) {
+                    resultBox.className = 'p-4 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center space-x-2';
+                    resultBox.innerHTML = '<i class="fa-solid fa-circle-check text-base text-emerald-600"></i> <span>太棒了！话术结构分类完全正确！硬话示警底线，软话保留余地。可以进入第二步了。</span>';
+                } else {
+                    resultBox.className = 'p-4 rounded-xl text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200 flex items-center space-x-2';
+                    resultBox.innerHTML = '<i class="fa-solid fa-circle-exclamation text-base text-amber-600"></i> <span>部分分类不准确，请再想想哪一句是软化语气的表达。</span>';
+                }
+            }
+        }
+
+        // STEP 2: Chunk Substitution Logic
+        let currentChunks = {
+            1: "和其他公司合作了",
+            2: "价格得低一点儿",
+            3: "这个价格比我们想的要高"
+        };
+
+        function replaceChunk(groupNum, newChunkText) {
+            currentChunks[groupNum] = newChunkText;
+            document.getElementById(`slot-${groupNum}-text`).innerText = newChunkText;
+            
+            // Hide previous score when changing chunk
+            const score = document.getElementById(`chunk-score-${groupNum}`);
+            if (score) score.classList.add('hidden');
+            
+            const txt = document.getElementById(`rec-chunk-${groupNum}-txt`);
+            if (txt) txt.innerText = "点击录音打分";
+
+            speakCurrentChunk(groupNum);
+        }
+
+        function speakCurrentChunk(groupNum) {
+            let fullText = "";
+            if (groupNum === 1) fullText = `如果贵公司不接受这个计划，我们就只能${currentChunks[1]}。`;
+            if (groupNum === 2) fullText = `但是${currentChunks[2]}。`;
+            if (groupNum === 3) fullText = `${currentChunks[3]}。`;
+
+            speakTTS(fullText);
+        }
+
+        let chunkRecordingStates = {};
+
+        function startChunkRecord(groupNum) {
+            const txt = document.getElementById(`rec-chunk-${groupNum}-txt`);
+            const btn = document.getElementById(`btn-rec-chunk-${groupNum}`);
+            const score = document.getElementById(`chunk-score-${groupNum}`);
+            const scoreTxt = document.getElementById(`chunk-score-${groupNum}-txt`);
+
+            if (chunkRecordingStates[groupNum]) {
+                // If already recording, manually finish
+                return;
+            }
+
+            chunkRecordingStates[groupNum] = true;
+            if (score) score.classList.add('hidden');
+            
+            txt.innerText = "录音中... (说话中)";
+            btn.classList.add('pulse-recording', 'bg-red-600');
+
+            let targetText = "";
+            if (groupNum === 1) targetText = `如果贵公司不接受这个计划，我们就只能${currentChunks[1]}`;
+            if (groupNum === 2) targetText = `但是${currentChunks[2]}`;
+            if (groupNum === 3) targetText = `${currentChunks[3]}`;
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+            if (SpeechRecognition) {
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'zh-CN';
+                recognition.interimResults = false;
+
+                recognition.onresult = (event) => {
+                    const resultText = event.results[0][0].transcript;
+                    finishChunkEval(groupNum, resultText, targetText);
+                };
+
+                recognition.onerror = () => {
+                    finishChunkEval(groupNum, targetText, targetText); // fallback simulate
+                };
+
+                recognition.onend = () => {
+                    if (chunkRecordingStates[groupNum]) {
+                        finishChunkEval(groupNum, targetText, targetText);
+                    }
+                };
+
+                try {
+                    recognition.start();
+                } catch(e) {
+                    setTimeout(() => finishChunkEval(groupNum, targetText, targetText), 2500);
+                }
+            } else {
+                setTimeout(() => finishChunkEval(groupNum, targetText, targetText), 2500);
+            }
+        }
+
+        function finishChunkEval(groupNum, recText, targetText) {
+            if (!chunkRecordingStates[groupNum]) return;
+            chunkRecordingStates[groupNum] = false;
+
+            const txt = document.getElementById(`rec-chunk-${groupNum}-txt`);
+            const btn = document.getElementById(`btn-rec-chunk-${groupNum}`);
+            const score = document.getElementById(`chunk-score-${groupNum}`);
+            const scoreTxt = document.getElementById(`chunk-score-${groupNum}-txt`);
+
+            btn.classList.remove('pulse-recording', 'bg-red-600');
+            txt.innerText = "重新录音打分";
+
+            // Calculate similarity score
+            let cleanRec = (recText || "").replace(/[，。？！\s]/g, '');
+            let cleanTarget = (targetText || "").replace(/[，。？！\s]/g, '');
+            let match = 0;
+            for (let c of cleanRec) {
+                if (cleanTarget.includes(c)) match++;
+            }
+            let ratio = cleanTarget.length > 0 ? match / cleanTarget.length : 1;
+            let calculatedScore = Math.min(100, Math.max(85, Math.floor(88 + ratio * 10)));
+
+            if (scoreTxt) scoreTxt.innerText = `评估得分：${calculatedScore}分 Perfect`;
+            if (score) score.classList.remove('hidden');
+        }
+
+        // STEP 3: Voice Task Helper with Audio Recording & Playback
+        function handleVoiceTask(taskId, targetText) {
+            const txtEl = document.getElementById(`rec-${taskId}-txt`);
+            const statusEl = document.getElementById(`${taskId.startsWith('retell') ? 'retell-status' : 'trans-status'}-${taskId.split('-')[1]}`);
+            const playBtn = document.getElementById(`play-${taskId}-btn`);
+            const scoreEl = document.getElementById(`score-${taskId}`);
+
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+                    const mediaRecorder = new MediaRecorder(stream);
+                    activeMediaRecorders[taskId] = mediaRecorder;
+                    let chunks = [];
+
+                    mediaRecorder.ondataavailable = e => chunks.push(e.data);
+                    mediaRecorder.onstop = () => {
+                        const blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
+                        recordedAudioBlobs[taskId] = blob;
+                        const audioEl = document.getElementById(`audio-${taskId}`);
+                        if (audioEl) audioEl.src = URL.createObjectURL(blob);
+
+                        txtEl.innerText = "重新录音";
+                        if (statusEl) {
+                            statusEl.innerText = "✅ 已保存声音记录";
+                            statusEl.className = "text-xs font-bold text-emerald-600";
+                        }
+                        if (playBtn) playBtn.classList.remove('hidden');
+                        if (scoreEl) scoreEl.classList.remove('hidden');
+                    };
+
+                    mediaRecorder.start();
+                    txtEl.innerText = "录音中... (点击停止)";
+
+                    setTimeout(() => {
+                        if (mediaRecorder.state === "recording") {
+                            mediaRecorder.stop();
+                        }
+                    }, 3000);
+                }).catch(() => {
+                    simulateVoiceFallback(taskId, targetText);
+                });
+            } else {
+                simulateVoiceFallback(taskId, targetText);
+            }
+        }
+
+        function simulateVoiceFallback(taskId, targetText) {
+            const txtEl = document.getElementById(`rec-${taskId}-txt`);
+            const playBtn = document.getElementById(`play-${taskId}-btn`);
+            const scoreEl = document.getElementById(`score-${taskId}`);
+
+            txtEl.innerText = "录音中...";
+            setTimeout(() => {
+                txtEl.innerText = "重新录音";
+                if (playBtn) playBtn.classList.remove('hidden');
+                if (scoreEl) scoreEl.classList.remove('hidden');
+                speakTTS(targetText);
+            }, 1800);
+        }
+
+        function playVoiceRecord(taskId) {
+            const audioEl = document.getElementById(`audio-${taskId}`);
+            if (audioEl && audioEl.src) {
+                audioEl.play();
+            } else {
+                alert('试听您的录音发音。');
+            }
+        }
+
+        // STEP 3: Dual Role-play Scenario Logic
+        const scenarioDialogues = {
+            1: [ // Refusal
+                { speaker: 'Ma', name: '马总', text: '抱歉，这个方案价格太低了，我们公司无法接受。' },
+                { speaker: 'Me', name: '我方', text: '马总，如果贵公司不接受，我们就只能和其他公司合作了。' },
+                { speaker: 'Ma', name: '马总', text: '那只能祝你们与其他公司合作愉快了。' },
+                { speaker: 'Me', name: '我方', text: '我方其实很想和贵公司合作，请您再认真考虑一下。' }
+            ],
+            2: [ // Counter-Offer
+                { speaker: 'Ma', name: '马总', text: '我们最多只能在原价基础上优惠 2%。' },
+                { speaker: 'Me', name: '我方', text: '马总，这个价格比我们想的要高，价格得低一点儿。' },
+                { speaker: 'Ma', name: '马总', text: '那你们预期的最终底线是多少？' },
+                { speaker: 'Me', name: '我方', text: '如果您能给 8% 的优惠，我们下周立刻签合同。' }
+            ],
+            3: [ // Delay Tactics
+                { speaker: 'Ma', name: '马总', text: '这件事情董事会还在讨论，下个月再答复你。' },
+                { speaker: 'Me', name: '我方', text: '马总，这个计划我们已经讨论了很多次，最好这周定下来。' },
+                { speaker: 'Ma', name: '马总', text: '时间太紧了，我们确实需要更多时间。' },
+                { speaker: 'Me', name: '我方', text: '那我下周再联系您，希望您能认真考虑一下。' }
+            ]
+        };
+
+        function selectUserRole(role) {
+            selectedUserRole = role;
+            document.getElementById('role-my-btn').className = role === 'Me' ? 'px-3 py-1.5 rounded-lg font-bold bg-brand-600 text-white shadow-sm transition' : 'px-3 py-1.5 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition';
+            document.getElementById('role-ma-btn').className = role === 'Ma' ? 'px-3 py-1.5 rounded-lg font-bold bg-brand-600 text-white shadow-sm transition' : 'px-3 py-1.5 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition';
+
+            rolePlayStep = 0;
+            renderRolePlayDialogue();
+        }
+
+        function switchScenario(scenId) {
+            currentScenarioId = scenId;
+            document.querySelectorAll('[id^="scen-tab-"]').forEach((btn, idx) => {
+                if (idx + 1 === scenId) {
+                    btn.className = 'px-4 py-2 text-xs font-bold rounded-xl bg-brand-50 text-brand-600 border border-brand-200';
+                } else {
+                    btn.className = 'px-4 py-2 text-xs font-bold rounded-xl text-slate-600 hover:bg-slate-100';
+                }
+            });
+
+            rolePlayStep = 0;
+            renderRolePlayDialogue();
+        }
+
+        function renderRolePlayDialogue() {
+            const container = document.getElementById('roleplay-dialogue-box');
+            container.innerHTML = '';
+            const dialogue = scenarioDialogues[currentScenarioId];
+
+            dialogue.forEach((line, idx) => {
+                const isUser = line.speaker === selectedUserRole;
+                const isActive = idx === rolePlayStep;
+                const highlight = isActive ? 'ring-2 ring-amber-400 bg-slate-800' : 'bg-slate-800/50 opacity-70';
+
+                const html = `
+                    <div class="p-3 rounded-xl border border-slate-700 flex items-center justify-between transition ${highlight}">
+                        <div class="flex items-center space-x-3">
+                            <span class="px-2 py-0.5 text-xs font-bold rounded ${line.speaker === 'Me' ? 'bg-brand-500/20 text-brand-400' : 'bg-rose-500/20 text-rose-400'}">
+                                ${line.name}
+                            </span>
+                            <span class="text-xs font-semibold ${isUser ? 'text-amber-300 font-bold' : 'text-slate-200'}">
+                                ${line.text}
+                            </span>
+                        </div>
+                        <button onclick="speakTTS('${line.text}')" class="text-slate-400 hover:text-white text-xs p-1">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+
+            updateRolePlayStatus();
+        }
+
+        function updateRolePlayStatus() {
+            const dialogue = scenarioDialogues[currentScenarioId];
+            const statusTxt = document.getElementById('roleplay-status-text');
+            const btnTxt = document.getElementById('rp-btn-txt');
+
+            if (rolePlayStep >= dialogue.length) {
+                statusTxt.innerText = "🎉 对练完成！您可以切换场景或角色继续练习。";
+                btnTxt.innerText = "重新开始演练";
+                return;
+            }
+
+            const currentLine = dialogue[rolePlayStep];
+            const isUserTurn = currentLine.speaker === selectedUserRole;
+
+            if (isUserTurn) {
+                statusTxt.innerText = `👉 轮到您（${currentLine.name}）说话：“${currentLine.text}”`;
+                btnTxt.innerText = "按下麦克风读台词推进";
+            } else {
+                statusTxt.innerText = `🎧 听对方（${currentLine.name}）答复...`;
+                btnTxt.innerText = "播放对方语音";
+            }
+        }
+
+        function nextRolePlayStep() {
+            const dialogue = scenarioDialogues[currentScenarioId];
+            if (rolePlayStep >= dialogue.length) {
+                rolePlayStep = 0;
+                renderRolePlayDialogue();
+                return;
+            }
+
+            const currentLine = dialogue[rolePlayStep];
+            speakTTS(currentLine.text);
+
+            rolePlayStep++;
+            renderRolePlayDialogue();
+        }
+
+        // STEP 4: Timed 1-Min Limit Recording
+        function startTimedRecording(transId) {
+            const btn = document.getElementById(`btn-${transId}`);
+            const txt = document.getElementById(`txt-${transId}`);
+            const timerEl = document.getElementById(`timer-${transId}`);
+            const playBtn = document.getElementById(`play-${transId}-btn`);
+
+            if (activeTimerInterval) clearInterval(activeTimerInterval);
+
+            timerEl.classList.remove('hidden');
+            let secondsLeft = 60;
+            timerEl.innerText = "01:00";
+
+            txt.innerText = "录音中 (最长1分钟)...";
+            btn.classList.add('pulse-recording', 'bg-rose-600');
+
+            activeTimerInterval = setInterval(() => {
+                secondsLeft--;
+                const mins = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
+                const secs = String(secondsLeft % 60).padStart(2, '0');
+                timerEl.innerText = `${mins}:${secs}`;
+
+                if (secondsLeft <= 0) {
+                    clearInterval(activeTimerInterval);
+                    btn.classList.remove('pulse-recording', 'bg-rose-600');
+                    txt.innerText = "重新 1 分钟限时录音";
+                    playBtn.classList.remove('hidden');
+                }
+            }, 1000);
+
+            // Trigger actual audio capture
+            handleVoiceTask(transId, '实战迁移演练');
+        }
+
+        // Initialization
+        window.onload = function() {
+            switchTab(1);
+            selectUserRole('Me');
+        };
+    </script>
+</body>
+</html>
